@@ -4,7 +4,11 @@
 
 This is the Backend server of my examination project for my exam in Nackademin Fullstack development training.
 
+This is built for this Frontend app:
+
 For the Frontend part: [goblincakes_gui](https://github.com/KennethEllebring/goblincakes_gui "goblincakes frontend part")
+
+And also a MongoDB Database: [MongoDB Homepage](https://www.mongodb.com/ "mongoDB Homepage")
 
 ### Built With Node.js / Express
 
@@ -12,7 +16,7 @@ For the Frontend part: [goblincakes_gui](https://github.com/KennethEllebring/gob
 
 ### Installation
 
-1. Create a ".env" file in the root directory containing ex:
+1. Create a ".env" file in the root directory containing:
 
    ```js
    URI = "mongoDB Server URI";
