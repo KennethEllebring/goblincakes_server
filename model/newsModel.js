@@ -32,12 +32,11 @@ const commentNewsSchema = Joi.object({
   commentBody: Joi.string().min(1).required(),
 });
 
-const checkNewsExist = async (id, user) => {
+const checkNewsExist = async (id) => {
   const db = await getClientDB();
   const collection = db.collection('news');
   const news = await collection.findOne({
     _id: new ObjectId(id),
-    userID: user,
   });
   if (!news) {
     return false;

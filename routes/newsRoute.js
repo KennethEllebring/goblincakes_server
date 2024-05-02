@@ -8,7 +8,7 @@ const {getAllNews} = require('../controllers/newsControllers/getAllNews');
 const newsRoute = express.Router();
 
 newsRoute.patch('/', checkLoginToken, editNewsPost);
-newsRoute.delete('/', checkLoginToken, deleteNewsPost);
+newsRoute.delete('/:id', checkLoginToken, deleteNewsPost);
 newsRoute.get('/all', getAllNews);
 
 module.exports = {
