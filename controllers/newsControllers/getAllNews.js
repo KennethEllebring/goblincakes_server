@@ -1,6 +1,6 @@
-const {getClientDB} = require('../../db/connect');
+const { getClientDB } = require('../../db/connect');
 
-exports.getAllNews = async function getAllNews(req, res) {
+const getAllNews = async (req, res) => {
 
   try {
     const db = getClientDB();
@@ -13,3 +13,5 @@ exports.getAllNews = async function getAllNews(req, res) {
     res.status(500).json({ message: 'Error connecting to the database', error: err });
 }
 };
+
+exports.getAllNews = getAllNews;

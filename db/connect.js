@@ -1,4 +1,4 @@
-const {MongoClient} = require('mongodb');
+const { MongoClient } = require('mongodb');
 require('dotenv').config({path: './config/.env'});
 
 const uri = process.env.URI;
@@ -9,7 +9,6 @@ const client = new MongoClient(uri);
 async function connect() {
   try {
     await client.connect();
-    console.log('Connected successfully to server');
     const db = client.db(database);
     return db;
   } catch (err) {

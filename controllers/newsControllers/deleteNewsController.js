@@ -1,15 +1,14 @@
-const {ObjectId} = require('mongodb');
-const {getClientDB} = require('../../db/connect');
-const {deleteSchema, checkNewsExist} = require('../../model/newsModel');
+const { ObjectId } = require('mongodb');
+const { getClientDB } = require('../../db/connect');
+const { deleteSchema, checkNewsExist } = require('../../model/newsModel');
 
-const deleteNewsPost = async function (req, res) {
+const deleteNewsPost = async (req, res) => {
   let validation = deleteSchema.validate(req.params);
   if (validation.error) {
     return res.status(406).json({message: validation.error.details[0].message});
   }
 
-  const {id} = req.params;
-  console.log(id)
+  const { id } = req.params;
 
   const checkNews = await checkNewsExist(id);
 

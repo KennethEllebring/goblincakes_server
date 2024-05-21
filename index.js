@@ -1,5 +1,5 @@
-const {app} = require('./app');
-const {connect} = require('./db/connect');
+const { app } = require('./app');
+const { connect } = require('./db/connect');
 
 connect();
 

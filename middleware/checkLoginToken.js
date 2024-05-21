@@ -18,7 +18,10 @@ exports.checkLoginToken = function checkLoginToken(req, res, next) {
     const loggedInUser = jwt.verify(loginToken, TOKEN_SECRET);
     req.user = {
       username: loggedInUser.username,
-      isAdmin: loggedInUser.isAdmin
+      isAdmin: loggedInUser.isAdmin,
+      characterName: loggedInUser.characterName,
+      realm: loggedInUser.realm,
+      characterSpec: loggedInUser.characterSpec
     };
     
     next();

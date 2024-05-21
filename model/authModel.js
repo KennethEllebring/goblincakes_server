@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const {getClientDB} = require('../db/connect');
+const { getClientDB } = require('../db/connect');
 
 const loginSchema = Joi.object({
   username: Joi.string()
@@ -54,6 +54,44 @@ const registerSchema = Joi.object({
     }),
 });
 
+const updatePasswordSchema = Joi.object({
+  username: Joi.string()
+    .pattern(new RegExp('^[a-zA-Z0-9ÅÄÖåäö]+$'))
+    .min(4)
+    .max(16)
+    .required()
+    .messages({
+      'string.base': 'Username should be a string',
+      'string.empty': 'Username is required',
+      'string.min': 'Username should have at least {#limit} characters',
+      'string.max': 'Username should have at most {#limit} characters',
+      'string.pattern.base': 'Username contains invalid characters',
+      'any.required': 'Username is required',
+    }),
+  oldPassword: Joi.string()
+    .min(6)
+    .max(36)
+    .required()
+    .messages({
+      'string.base': 'Password should be a string',
+      'string.empty': 'Password is required',
+      'string.min': 'Password should have at least {#limit} characters',
+      'string.max': 'Password should have at most {#limit} characters',
+      'any.required': 'Password is required',
+    }),
+  newPassword: Joi.string()
+    .min(6)
+    .max(36)
+    .required()
+    .messages({
+      'string.base': 'Password should be a string',
+      'string.empty': 'Password is required',
+      'string.min': 'Password should have at least {#limit} characters',
+      'string.max': 'Password should have at most {#limit} characters',
+      'any.required': 'Password is required',
+    }),
+});
+
 const checkUserExists = async (username) => {
   const db = await getClientDB();
   const collection = db.collection('users');
@@ -62,16 +100,15 @@ const checkUserExists = async (username) => {
     username: username.toLowerCase(),
   });
 
-  console.log('checkuserexists', user)
-
   if (user === null) {
     return false;
   }
-  return {username: user.username, password: user.password, admin: user.admin};
+  return {username: user.username, password: user.password, admin: user.admin, characterName: user.characterName, realm: user.realm, characterSpec: user.characterSpec };
 };
 
 module.exports = {
   loginSchema,
   registerSchema,
+  updatePasswordSchema,
   checkUserExists,
 };

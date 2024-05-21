@@ -3,8 +3,8 @@ const bcrypt = require("bcrypt");
 const dotenv = require("dotenv").config({ path: "../../config/.env" });
 const jwt = require("jsonwebtoken");
 
-const generateAccessToken = (username, admin) => {
-  return jwt.sign({ username: username, isAdmin: admin }, process.env.TOKEN_SECRET, {
+const generateAccessToken = (username, admin, characterName, realm, characterSpec) => {
+  return jwt.sign({ username: username, isAdmin: admin, characterName: characterName, realm: realm, characterSpec: characterSpec }, process.env.TOKEN_SECRET, {
     expiresIn: "1h",
   });
 };
@@ -25,12 +25,13 @@ const login = async (req, res) => {
           .json({ message: "Login failed: Invalid credentials" });
       } else {
         if (await bcrypt.compare(password, user.password)) {
-          const accessToken = generateAccessToken(user.username, user.admin);
+          const accessToken = generateAccessToken(user.username, user.admin, user.characterName, user.realm, user.characterSpec);
           return res
             .cookie("authToken", accessToken, {
               httpOnly: true,
               sameSite: "none",
               secure: true,
+              maxAge: 60*60*1000,
             })
             .status(200)
             .json({message: `${username} logged in!`});

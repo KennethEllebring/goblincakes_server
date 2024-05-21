@@ -1,15 +1,17 @@
 const express = require('express');
 const { checkLoginToken } = require("../middleware/checkLoginToken");
 
-const {editNewsPost} = require('../controllers/newsControllers/editNewsController');
-const {deleteNewsPost} = require('../controllers/newsControllers/deleteNewsController');
-const {getAllNews} = require('../controllers/newsControllers/getAllNews');
+const { getAllNews } = require('../controllers/newsControllers/getAllNews');
+const { createNewsPost } = require('../controllers/newsControllers/createNewsController');
+const { editNewsPost } = require('../controllers/newsControllers/editNewsController');
+const { deleteNewsPost } = require('../controllers/newsControllers/deleteNewsController');
 
 const newsRoute = express.Router();
 
-newsRoute.patch('/', checkLoginToken, editNewsPost);
-newsRoute.delete('/:id', checkLoginToken, deleteNewsPost);
 newsRoute.get('/all', getAllNews);
+newsRoute.post('/', checkLoginToken, createNewsPost);
+newsRoute.patch('/:id', checkLoginToken, editNewsPost);
+newsRoute.delete('/:id', checkLoginToken, deleteNewsPost);
 
 module.exports = {
   newsRoute,

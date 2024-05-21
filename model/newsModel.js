@@ -1,35 +1,19 @@
-const {getClientDB} = require('../db/connect');
+const { getClientDB } = require('../db/connect');
 const Joi = require('joi');
-const {ObjectId} = require('mongodb');
+const { ObjectId } = require('mongodb');
 
-const newsSchema = Joi.object({
-  body: Joi.string().required(),
+const createNewsSchema = Joi.object({
+  newsHeader: Joi.string().required(),
+  newsText: Joi.string(),
+  imgUrl: Joi.optional()
 });
 
 const deleteSchema = Joi.object({
   id: Joi.string().length(24).required(),
 });
 
-const getAllUserNewsSchema = Joi.object({
-  username: Joi.string().required(),
-});
-
-const findOneNewsSchema = Joi.object({
-  id: Joi.string().length(24).required(),
-});
-
 const patchSchema = Joi.object({
   id: Joi.string().length(24).required(),
-  body: Joi.string().required(),
-});
-
-const likeNewsSchema = Joi.object({
-  id: Joi.string().length(24).required(),
-});
-
-const commentNewsSchema = Joi.object({
-  id: Joi.string().length(24).required(),
-  commentBody: Joi.string().min(1).required(),
 });
 
 const checkNewsExist = async (id) => {
@@ -58,13 +42,9 @@ const checkAlreadyLiked = async (id, user) => {
 };
 
 module.exports = {
-  newsSchema,
-  findOneNewsSchema,
-  getAllUserNewsSchema,
+  createNewsSchema,
   deleteSchema,
   patchSchema,
-  commentNewsSchema,
   checkNewsExist,
-  likeNewsSchema,
   checkAlreadyLiked,
 };

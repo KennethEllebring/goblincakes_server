@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { getClientDB } = require("../../db/connect");
 const { registerSchema, checkUserExists } = require("../../model/authModel");
 
-const register = async function (req, res) {
+const register = async (req, res) => {
   let validation = registerSchema.validate(req.body);
   if (validation.error) {
     return res
