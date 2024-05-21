@@ -2,9 +2,10 @@
   "name": "goblincakes_server",
   "version": "1.0.0",
   "description": "goblincakes server",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "server": "nodemon index"
+    "server": "nodemon api/index.js",
+    "start": "node api/index.js"
   },
   "author": "Kenneth Ellebring",
   "license": "ISC",
