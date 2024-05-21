@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const NodeCache = require('node-cache');
-require('dotenv').config({ path: './config/.env' });
+require('dotenv').config();
 
 const WARCRAFTLOGS_KEY = process.env.WARCRAFTLOGS_KEY;
 

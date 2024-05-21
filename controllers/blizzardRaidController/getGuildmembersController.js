@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const NodeCache = require('node-cache');
-require('dotenv').config({ path: './config/.env' });
+require('dotenv').config();
+
 
 const BLIZZARD_CLIENT_ID = process.env.BLIZZARD_CLIENT_ID;
 const BLIZZARD_CLIENT_SECRET = process.env.BLIZZARD_CLIENT_SECRET;

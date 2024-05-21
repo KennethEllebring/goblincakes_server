@@ -1,6 +1,5 @@
 const { loginSchema, checkUserExists } = require("../../model/authModel");
 const bcrypt = require("bcrypt");
-const dotenv = require("dotenv").config({ path: "../../config/.env" });
 const jwt = require("jsonwebtoken");
 
 const generateAccessToken = (username, admin, characterName, realm, characterSpec) => {
