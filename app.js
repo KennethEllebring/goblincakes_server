@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://goblincakes.vercel.app/", "https://goblincakes-server.vercel.app/"],
+    origin: ["http://localhost:3000", "https://goblincakes.vercel.app/"],
     credentials: true,
   })
 );
