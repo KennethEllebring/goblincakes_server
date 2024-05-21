@@ -23,7 +23,7 @@ const { warcraftlogsRoute } = require("./routes/warcraftlogsRoute");
 const { raiderIoRoute } = require("./routes/raiderIoRoutes");
 
 
-app.get("/api/ping", (req, res) => res.sendStatus(200));
+app.get("/", (req, res) => res.sendStatus(200));
 app.use("/api/auth", authRoute);
 app.use("/api/news", newsRoute);
 app.use("/api/forum", forumRoute);
