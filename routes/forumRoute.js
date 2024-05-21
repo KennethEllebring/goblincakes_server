@@ -25,25 +25,25 @@ const forumRoute = express.Router();
 forumRoute.get('/all', getForum);
 
 // Forum Category Controllers
-forumRoute.post('/create', createForumThread);
-forumRoute.patch('/category/:id', editForumCategory)
-forumRoute.delete('/category/:id', deleteForumCategory);
-forumRoute.delete('/title/:id', deleteForumTitle);
+forumRoute.post('/create', checkLoginToken, createForumThread);
+forumRoute.patch('/category/:id', checkLoginToken, editForumCategory)
+forumRoute.delete('/category/:id', checkLoginToken, deleteForumCategory);
+forumRoute.delete('/title/:id', checkLoginToken, deleteForumTitle);
 
 // Forum Topic Controllers
-forumRoute.get('/topics/:id', getForumTopics)
-forumRoute.post('/topic', createForumTopic);
-forumRoute.patch('/topic/:id/:topicId', editForumTopic)
-forumRoute.delete('/topic/:id/:topicId', deleteForumTopic);
+forumRoute.get('/topics/:id', checkLoginToken ,getForumTopics)
+forumRoute.post('/topic', checkLoginToken, createForumTopic);
+forumRoute.patch('/topic/:id/:topicId', checkLoginToken, editForumTopic)
+forumRoute.delete('/topic/:id/:topicId', checkLoginToken, deleteForumTopic);
 
 // Forum Posts Controllers
-forumRoute.get('/posts/:topicId', getForumPosts)
-forumRoute.post('/post/:topicId', createForumPost);
-forumRoute.patch('/post/:topicId/:postId', editForumPost)
-forumRoute.delete('/post/:topicId/:postId', deleteForumPost);
-forumRoute.post('/post/like/:topicId/:postId', likePost)
-forumRoute.post('/post/comment/:topicId/:postId', addForumComment)
-forumRoute.delete('/post/comment/:topicId/:postId/:commentId', deleteForumComment)
+forumRoute.get('/posts/:topicId', checkLoginToken, getForumPosts)
+forumRoute.post('/post/:topicId', checkLoginToken, createForumPost);
+forumRoute.patch('/post/:topicId/:postId', checkLoginToken, editForumPost)
+forumRoute.delete('/post/:topicId/:postId', checkLoginToken, deleteForumPost);
+forumRoute.post('/post/like/:topicId/:postId', checkLoginToken, likePost)
+forumRoute.post('/post/comment/:topicId/:postId', checkLoginToken, addForumComment)
+forumRoute.delete('/post/comment/:topicId/:postId/:commentId', checkLoginToken, deleteForumComment)
 
 module.exports = {
   forumRoute,

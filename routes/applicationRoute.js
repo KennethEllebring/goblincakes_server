@@ -14,9 +14,9 @@ applicationRoute.get('/', getApplicationForm);
 applicationRoute.post('/create', checkLoginToken, createApplicationForm);
 applicationRoute.patch('/update', checkLoginToken, editApplicationForm);
 applicationRoute.delete('/:id', checkLoginToken, deleteApplicationForm);
-applicationRoute.post('/submit', sendApplication)
+applicationRoute.post('/submit', checkLoginToken, sendApplication)
 applicationRoute.get('/applications', getApplications)
-applicationRoute.delete('/applications/:id', deleteApplication)
+applicationRoute.delete('/applications/:id', checkLoginToken, deleteApplication)
 
 module.exports = {
   applicationRoute,

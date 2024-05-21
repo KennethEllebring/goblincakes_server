@@ -11,11 +11,11 @@ const { checkLoginToken } = require('../middleware/checkLoginToken');
 const authRoute = express.Router();
 
 authRoute.post('/login', login);
-authRoute.post('/register', register);
+authRoute.post('/register', checkLoginToken, register);
 authRoute.patch('/changepassword', checkLoginToken, changePassword);
 authRoute.patch('/edituser', checkLoginToken, editUser)
 authRoute.get('/logout', logout);
-authRoute.delete('/removeuser/:username', removeUser);
+authRoute.delete('/removeuser/:username', checkLoginToken, removeUser);
 authRoute.get('/check', checkLoginToken, checkUser);
 
 module.exports = {
